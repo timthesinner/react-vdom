@@ -1,0 +1,42 @@
+{
+  "name": "react-vdom",
+  "version": "1.0.0",
+  "description": "React interop with libraries like D3 using virtual DOM",
+  "main": "index.js",
+  "scripts": {
+    "example": "node example/test-server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/timthesinner/react-vdom.git"
+  },
+  "keywords": [
+    "React",
+    "Interop",
+    "VirtualDOM"
+  ],
+  "author": "timthesinner@gmail.com",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/timthesinner/react-vdom/issues"
+  },
+  "homepage": "https://github.com/timthesinner/react-vdom#readme",
+  "devDependencies": {
+    "babel-core": "^6.21.0",
+    "babel-loader": "^6.2.10",
+    "babel-polyfill": "^6.20.0",
+    "babel-preset-es2015": "^6.18.0",
+    "babel-preset-react": "^6.16.0",
+    "d3": "^4.4.0",
+    "html-webpack-plugin": "^2.24.1",
+    "webpack": "^1.14.0",
+    "webpack-bundle-tracker": "^0.1.0",
+    "webpack-dashboard": "^0.2.0",
+    "webpack-dev-server": "^1.16.2",
+    "yarn": "^0.18.1"
+  },
+  "dependencies": {
+    "react": "^15.4.1",
+    "react-dom": "^15.4.1"
+  }
+}
