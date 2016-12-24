@@ -15,16 +15,51 @@
  *
  * @author TimTheSinner
  */
-import React from 'react';
-import { render } from 'react-dom';
-import * as D3 from 'd3';
+import React, { Component } from 'react';
+import {render} from 'react-dom';
 
-import VirtualDOM from '../src';
+import letterData from './letter-frequency-data';
+import LetterFrequencies from './letter-frequencies';
 
 document.body.innerHTML = '<div id="body" />';
-render (
-  (<div>Test</div>), document.getElementById('body')
-);
+document.head.innerHTML += `<style>
+  .bar {
+    fill: steelblue;
+  }
+
+  .bar:hover {
+    fill: brown;
+  }
+
+  .axis--x path {
+    display: none;
+  }
+</style>`;
+
+class DynamicFrequencies extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = { letters: props.letters.map((l) => Object.assign({}, l)) };
+
+    setInterval(() => {
+      const letter = this.state.letters[Math.floor(Math.random() * 26)];
+      letter.frequency = Math.random() * (0.25 - 0.01) + 0.01;
+      this.setState({letters: this.state.letters});
+    }, 50);
+  }
+
+  render() {
+    return <LetterFrequencies letters={this.state.letters} />;
+  }
+}
+
+render((
+  <div>
+    <LetterFrequencies letters={letterData}/>
+    <DynamicFrequencies letters={letterData}/>
+  </div>
+), document.getElementById('body'));
 
 if (module.hot) {
   module.hot.accept();
