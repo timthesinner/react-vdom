@@ -50,6 +50,14 @@ class App extends Component {
   }
 }
 
+function cleanPath(uri) {
+  if (uri && uri[0] === '/') {
+    return uri;
+  }
+  return '/' + uri
+}
+
+const BasePath = cleanPath(window.__ROOT_PATH__ || '/');
 class Home extends Component {
   render() {
     const { childRoutes } = this.props.routes[0];
@@ -58,7 +66,7 @@ class Home extends Component {
         <h1>React VirtualDOM with D3 Charts</h1>
         <ul>
           {childRoutes.filter((c) => c.name).map((c) => {
-            return <li key={c.path}><Link to={c.path}>{c.name}</Link></li>
+            return <li key={c.path}><Link to={this.props.routes[0].build(c.path)}>{c.name}</Link></li>
           })}
         </ul>
       </div>
@@ -67,7 +75,7 @@ class Home extends Component {
 }
 
 const routes = (
-  <Route path="/" component={App}>
+  <Route path={BasePath} component={App} build={(route) => { return (BasePath === '/' ? BasePath + route : BasePath + '/' + route); }}>
     <IndexRoute component={Home} />
 
     <Route path="static-bar-chart" name='Static Letter frequency Bar Chart' letters={letterData} component={StaticLetterFrequencies} />

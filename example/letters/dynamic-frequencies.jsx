@@ -22,6 +22,6 @@ export default class DynamicLetterFrequencies extends Component {
   }
 
   render() {
-    return <StaticLetterFrequencies letters={this.state.letters} />;
+    return <StaticLetterFrequencies routes={this.props.routes} letters={this.state.letters} />;
   }
 }
