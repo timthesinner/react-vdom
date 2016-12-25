@@ -16,12 +16,13 @@
  * @author TimTheSinner
  */
 import React, { Component } from 'react';
+import { Link } from 'react-router';
 import * as d3 from 'd3';
 
-import VirtualDOM from '../src';
+import VirtualDOM from '../../src';
 
 //Adapted from https://bl.ocks.org/mbostock/3885304
-export default class LetterFrequencies extends Component {
+export default class StaticLetterFrequencies extends Component {
   static margin = {
     top: 20,
     right: 20,
@@ -29,19 +30,24 @@ export default class LetterFrequencies extends Component {
     left: 40
   }
 
+  letters() {
+    const { route={}, letters } = this.props;
+    return route.letters || letters;
+  }
+
   render() {
     const dom = new VirtualDOM('svg', {width:'960', height:'500', key: 'letter-frequencies'});
     const svg = d3.select(dom);
 
-    const width = +svg.attr("width") - LetterFrequencies.margin.left - LetterFrequencies.margin.right;
-    const height = +svg.attr("height") - LetterFrequencies.margin.top - LetterFrequencies.margin.bottom;
+    const width = +svg.attr("width") - StaticLetterFrequencies.margin.left - StaticLetterFrequencies.margin.right;
+    const height = +svg.attr("height") - StaticLetterFrequencies.margin.top - StaticLetterFrequencies.margin.bottom;
 
     const x = d3.scaleBand().rangeRound([0, width]).padding(0.1);
     const y = d3.scaleLinear().rangeRound([height, 0]);
 
-    const g = svg.append("g").attr("transform", `translate(${LetterFrequencies.margin.left},${LetterFrequencies.margin.top})`);
+    const g = svg.append("g").attr("transform", `translate(${StaticLetterFrequencies.margin.left},${StaticLetterFrequencies.margin.top})`);
 
-    const data = this.props.letters;
+    const data = this.letters();
     x.domain(data.map(function(d) { return d.letter; }));
     y.domain([0, d3.max(data, function(d) { return d.frequency; })]);
 
@@ -70,6 +76,12 @@ export default class LetterFrequencies extends Component {
       return height - y(d.frequency);
     });
 
-    return dom.render();
+    return (
+      <div>
+        Head back to <Link to='/'>Home</Link>.
+        <br />
+        {dom.render()}
+      </div>
+    )
   }
 }
