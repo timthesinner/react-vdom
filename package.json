@@ -4,7 +4,9 @@
   "description": "React interop with libraries like D3 using virtual DOM",
   "main": "index.js",
   "scripts": {
-    "example": "node example/test-server.js"
+    "example": "node example/test-server.js",
+    "start": "webpack -d --watch & live-server",
+    "build": "webpack -p"
   },
   "repository": {
     "type": "git",
