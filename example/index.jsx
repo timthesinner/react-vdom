@@ -16,8 +16,8 @@
  * @author TimTheSinner
  */
 import React, { Component } from 'react';
-import {render} from 'react-dom';
-import { Router, Route, IndexRoute, browserHistory } from 'react-router';
+import { render } from 'react-dom';
+import { Router, Route, IndexRoute, Link, browserHistory } from 'react-router';
 
 import NotFound from './not-found';
 
@@ -52,10 +52,15 @@ class App extends Component {
 
 class Home extends Component {
   render() {
-    console.log(this.props);
+    const { childRoutes } = this.props.routes[0];
     return (
       <div>
-        LA LA CONNECT THE DOTS
+        <h1>React VirtualDOM with D3 Charts</h1>
+        <ul>
+          {childRoutes.filter((c) => c.name).map((c) => {
+            return <li key={c.path}><Link to={c.path}>{c.name}</Link></li>
+          })}
+        </ul>
       </div>
     )
   }
@@ -65,8 +70,8 @@ const routes = (
   <Route path="/" component={App}>
     <IndexRoute component={Home} />
 
-    <Route path="static-bar-chart" letters={letterData} component={StaticLetterFrequencies} />
-    <Route path="dynamic-bar-chart" letters={letterData} component={DynamicLetterFrequencies} />
+    <Route path="static-bar-chart" name='Static Letter frequency Bar Chart' letters={letterData} component={StaticLetterFrequencies} />
+    <Route path="dynamic-bar-chart" name='Dynamic Letter frequency Bar Chart' letters={letterData} component={DynamicLetterFrequencies} />
 
     <Route path="*" component={NotFound} />
   </Route>

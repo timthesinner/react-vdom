@@ -16,6 +16,7 @@
  * @author TimTheSinner
  */
 import React, { Component } from 'react';
+import { Link } from 'react-router';
 import * as d3 from 'd3';
 
 import VirtualDOM from '../../src';
@@ -75,6 +76,12 @@ export default class StaticLetterFrequencies extends Component {
       return height - y(d.frequency);
     });
 
-    return dom.render();
+    return (
+      <div>
+        Head back to <Link to='/'>Home</Link>.
+        <br />
+        {dom.render()}
+      </div>
+    )
   }
 }
