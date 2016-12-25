@@ -78,7 +78,7 @@ export default class StaticLetterFrequencies extends Component {
 
     return (
       <div>
-        Head back to <Link to='/'>Home</Link>.
+        Head back to <Link to={this.props.routes[0].build('')}>Home</Link>.
         <br />
         {dom.render()}
       </div>
