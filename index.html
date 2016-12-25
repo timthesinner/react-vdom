@@ -3,29 +3,72 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>React VirtualDOM</title>
+    <title>React + D3 with VirtualDOM</title>
 
     <script type="text/javascript">
       window.__ROOT_PATH__ = 'react-vdom';
     </script>
 
+    <script type="application/ld+json">
+    {
+      "@context": {
+        "name": "http://rdf.data-vocabulary.org/#name",
+        "ingredient": "http://rdf.data-vocabulary.org/#ingredients",
+        "yield": "http://rdf.data-vocabulary.org/#yield",
+        "instructions": "http://rdf.data-vocabulary.org/#instructions",
+        "step": {
+          "@id": "http://rdf.data-vocabulary.org/#step",
+          "@type": "xsd:integer"
+        },
+        "description": "http://rdf.data-vocabulary.org/#description",
+        "foaf": "http://xmlns.com/foaf/0.1/",
+        "xsd": "http://www.w3.org/2001/XMLSchema#",
+        "foaf:page": {
+          "@type": "@id"
+        }
+      },
+      "name": "React + D3",
+      "ingredient": [
+        "ReactJS",
+        "React VirtualDOM",
+        "D3",
+        "React Router"
+      ],
+      "yield": "1 awesome webpage",
+      "instructions": [
+        {
+          "step": 1,
+          "description": "Read static data on load."
+        },
+        {
+          "step": 2,
+          "description": "Pass static data to React components through routes."
+        },
+        {
+          "step": 3,
+          "description": "In render blocks, pass a VirtualDOM node to the D3 select."
+        },
+        {
+          "step": 4,
+          "description": "Use D3 to manipulate VirtualDOM as you would standard DOM."
+        },
+        {
+          "step": 5,
+          "description": "Transform VirtualDOM to React by emitting the VirtualDOM's render routine."
+        }
+      ],
+      "foaf:page": "https://github.com/timthesinner/react-vdom"
+    }
+    </script>
+
     <!-- Start Single Page Apps for GitHub Pages -->
     <script type="text/javascript">
-
       /////////////////////////////////////////////////////////////////////////
       // Single Page Apps for GitHub Pages
       // https://github.com/rafrex/spa-github-pages
       // Copyright (c) 2016 Rafael Pedicini, licensed under the MIT License
       // ----------------------------------------------------------------------
-      // This script checks to see if a redirect is present in the query string
-      // and converts it back into the correct url and adds it to the
-      // browser's history using window.history.replaceState(...),
-      // which won't cause the browser to attempt to load the new url.
-      // When the single page app is loaded further down in this file,
-      // the correct url will be waiting in the browser's history for
-      // the single page app to route accordingly.
       /////////////////////////////////////////////////////////////////////////
-
       (function(l) {
         if (l.search) {
           var q = {};
