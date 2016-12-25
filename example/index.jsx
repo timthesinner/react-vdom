@@ -17,9 +17,13 @@
  */
 import React, { Component } from 'react';
 import {render} from 'react-dom';
+import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 
-import letterData from './letter-frequency-data';
-import LetterFrequencies from './letter-frequencies';
+import NotFound from './not-found';
+
+import letterData from './data/letter-frequencies';
+import StaticLetterFrequencies from './letters/static-frequencies';
+import DynamicLetterFrequencies from './letters/dynamic-frequencies';
 
 document.body.innerHTML = '<div id="body" />';
 document.head.innerHTML += `<style>
@@ -36,30 +40,46 @@ document.head.innerHTML += `<style>
   }
 </style>`;
 
-class DynamicFrequencies extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = { letters: props.letters.map((l) => Object.assign({}, l)) };
-
-    setInterval(() => {
-      const letter = this.state.letters[Math.floor(Math.random() * 26)];
-      letter.frequency = Math.random() * (0.25 - 0.01) + 0.01;
-      this.setState({letters: this.state.letters});
-    }, 50);
-  }
-
+class App extends Component {
   render() {
-    return <LetterFrequencies letters={this.state.letters} />;
+    return (
+      <div>
+        {this.props.children}
+      </div>
+    );
   }
 }
 
-render((
-  <div>
-    <LetterFrequencies letters={letterData}/>
-    <DynamicFrequencies letters={letterData}/>
-  </div>
-), document.getElementById('body'));
+class Home extends Component {
+  render() {
+    console.log(this.props);
+    return (
+      <div>
+        LA LA CONNECT THE DOTS
+      </div>
+    )
+  }
+}
+
+const routes = (
+  <Route path="/" component={App}>
+    <IndexRoute component={Home} />
+
+    <Route path="static-bar-chart" letters={letterData} component={StaticLetterFrequencies} />
+    <Route path="dynamic-bar-chart" letters={letterData} component={DynamicLetterFrequencies} />
+
+    <Route path="*" component={NotFound} />
+  </Route>
+);
+
+
+render(
+  <Router
+    history={browserHistory}
+    routes={routes}
+  />,
+  document.getElementById('body')
+);
 
 if (module.hot) {
   module.hot.accept();
