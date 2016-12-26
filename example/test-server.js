@@ -52,7 +52,10 @@ var config = {
     new dashboardPlugin(dash.setData),
     new webpack.optimize.CommonsChunkPlugin({name:'vendor', chunks: ['main'], wrnings: false}),
     new bundleTracker({filename: '../dist/webpack-stats.json'}),
-    new htmlWebpackPlugin({title:'VirtualDOM'})
+    new htmlWebpackPlugin({
+      title: 'React VirtualDOM',
+      template: 'index.html'
+    })
   ], module: {
     /*preLoaders: [{
       test: /\.js|\.jsx|\.es6$/,

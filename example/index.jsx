@@ -15,40 +15,17 @@
  *
  * @author TimTheSinner
  */
-import React, { Component } from 'react';
+import React from 'react';
 import { render } from 'react-dom';
-import { Router, Route, IndexRoute, Link, browserHistory } from 'react-router';
+import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 
-import NotFound from './not-found';
+import App from './components/app';
+import Home from './components/home';
+import NotFound from './components/not-found';
 
 import letterData from './data/letter-frequencies';
 import StaticLetterFrequencies from './letters/static-frequencies';
 import DynamicLetterFrequencies from './letters/dynamic-frequencies';
-
-document.body.innerHTML = '<div id="body" />';
-document.head.innerHTML += `<style>
-  .bar {
-    fill: steelblue;
-  }
-
-  .bar:hover {
-    fill: brown;
-  }
-
-  .axis--x path {
-    display: none;
-  }
-</style>`;
-
-class App extends Component {
-  render() {
-    return (
-      <div>
-        {this.props.children}
-      </div>
-    );
-  }
-}
 
 function cleanPath(uri) {
   if (uri && uri[0] === '/') {
@@ -58,33 +35,17 @@ function cleanPath(uri) {
 }
 
 const BasePath = cleanPath(window.__ROOT_PATH__ || '/');
-class Home extends Component {
-  render() {
-    const { childRoutes } = this.props.routes[0];
-    return (
-      <div>
-        <h1>React VirtualDOM with D3 Charts</h1>
-        <ul>
-          {childRoutes.filter((c) => c.name).map((c) => {
-            return <li key={c.path}><Link to={this.props.routes[0].build(c.path)}>{c.name}</Link></li>
-          })}
-        </ul>
-      </div>
-    )
-  }
-}
 
 const routes = (
   <Route path={BasePath} component={App} build={(route) => { return (BasePath === '/' ? BasePath + route : BasePath + '/' + route); }}>
     <IndexRoute component={Home} />
 
-    <Route path="static-bar-chart" name='Static Letter frequency Bar Chart' letters={letterData} component={StaticLetterFrequencies} />
-    <Route path="dynamic-bar-chart" name='Dynamic Letter frequency Bar Chart' letters={letterData} component={DynamicLetterFrequencies} />
+    <Route path="static-bar-chart" name='Static Bar Chart' letters={letterData} component={StaticLetterFrequencies} />
+    <Route path="dynamic-bar-chart" name='Dynamic Bar Chart' letters={letterData} component={DynamicLetterFrequencies} />
 
     <Route path="*" component={NotFound} />
   </Route>
 );
-
 
 render(
   <Router
