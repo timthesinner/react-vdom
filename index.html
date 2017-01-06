@@ -7,6 +7,9 @@
 
     <script type="text/javascript">
       window.__ROOT_PATH__ = 'react-vdom';
+      if (window.location && window.location.pathname === '/' && window.history) {
+        window.history.replaceState({redirect:'root-visited'}, 'Home', '/' + window.__ROOT_PATH__);
+      }
     </script>
 
     <script type="application/ld+json">
@@ -102,6 +105,15 @@
 
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/foundation/5.5.3/css/foundation.min.css">
     <style>
+      .center {
+        margin: auto;
+        max-width: 960px;
+      }
+
+      .center h1 {
+        text-align: center;
+      }
+
       .bar {
         fill: steelblue;
       }
@@ -112,6 +124,10 @@
 
       .axis--x path {
         display: none;
+      }
+
+      code {
+        border-style: none;
       }
     </style>
   </head>
