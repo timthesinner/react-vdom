@@ -1,3 +1,4 @@
+//Copyright (c) 2016 TimTheSinner All Rights Reserved.
 /**
  * Copyright (c) 2016 TimTheSinner All Rights Reserved.
  *
@@ -15,11 +16,10 @@
  *
  * @author TimTheSinner
  */
-import React, { Component } from 'react';
-import { Link } from 'react-router';
+import React, { Component, PropTypes } from 'react';
 import * as d3 from 'd3';
 
-import VirtualDOM from '../../src';
+import * as VirtualDOM from '../../src';
 
 //Adapted from https://bl.ocks.org/mbostock/3885304
 export default class StaticLetterFrequencies extends Component {
@@ -30,30 +30,39 @@ export default class StaticLetterFrequencies extends Component {
     left: 40
   }
 
-  letters() {
-    const { route={}, letters } = this.props;
-    return route.letters || letters;
+  static propTypes = {
+    letters: PropTypes.arrayOf(PropTypes.object).isRequired,
+
+    height: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+    width: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  }
+
+  static defaultProps = {
+    height: 500,
+    width: 960,
   }
 
   render() {
-    const dom = new VirtualDOM('svg', {width:'960', height:'500', key: 'letter-frequencies'});
+    const { letters, width, height } = this.props;
+    const { defaultProps, margin } = StaticLetterFrequencies;
+
+    const dom = new VirtualDOM.default('svg', {width:Math.min(+width, defaultProps.width), height:Math.min(+height, defaultProps.height), key: 'letter-frequencies'});
     const svg = d3.select(dom);
 
-    const width = +svg.attr("width") - StaticLetterFrequencies.margin.left - StaticLetterFrequencies.margin.right;
-    const height = +svg.attr("height") - StaticLetterFrequencies.margin.top - StaticLetterFrequencies.margin.bottom;
+    const graphWidth = +svg.attr("width") - margin.left - margin.right;
+    const graphHeight = +svg.attr("height") - margin.top - margin.bottom;
 
-    const x = d3.scaleBand().rangeRound([0, width]).padding(0.1);
-    const y = d3.scaleLinear().rangeRound([height, 0]);
+    const x = d3.scaleBand().rangeRound([0, graphWidth]).padding(0.1);
+    const y = d3.scaleLinear().rangeRound([graphHeight, 0]);
 
     const g = svg.append("g").attr("transform", `translate(${StaticLetterFrequencies.margin.left},${StaticLetterFrequencies.margin.top})`);
 
-    const data = this.letters();
-    x.domain(data.map(function(d) { return d.letter; }));
-    y.domain([0, d3.max(data, function(d) { return d.frequency; })]);
+    x.domain(letters.map(function(d) { return d.letter; }));
+    y.domain([0, d3.max(letters, function(d) { return d.frequency; })]);
 
     g.append("g")
       .attr("class", "axis axis--x")
-      .attr("transform", "translate(0," + height + ")")
+      .attr("transform", "translate(0," + graphHeight + ")")
       .call(d3.axisBottom(x));
 
     g.append("g")
@@ -66,22 +75,16 @@ export default class StaticLetterFrequencies extends Component {
         .attr("text-anchor", "end")
         .text("Frequency");
 
-    g.selectAll(".bar").data(data).enter().append("rect").attr("class", "bar").attr("x", (d) => {
+    g.selectAll(".bar").data(letters).enter().append("rect").attr("class", "bar").attr("x", (d) => {
       return x(d.letter);
     }).attr('key', (d) => {
       return d.letter;
     }).attr("y", (d) => {
       return y(d.frequency);
     }).attr("width", x.bandwidth()).attr("height", (d) => {
-      return height - y(d.frequency);
+      return graphHeight - y(d.frequency);
     });
 
-    return (
-      <div>
-        Head back to <Link to={this.props.routes[0].build('')}>Home</Link>.
-        <br />
-        {dom.render()}
-      </div>
-    )
+    return dom.render();
   }
 }

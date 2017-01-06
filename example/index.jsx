@@ -24,8 +24,7 @@ import Home from './components/home';
 import NotFound from './components/not-found';
 
 import letterData from './data/letter-frequencies';
-import StaticLetterFrequencies from './letters/static-frequencies';
-import DynamicLetterFrequencies from './letters/dynamic-frequencies';
+import Wrapper, { StaticLetterFrequenciesRoute, DynamicLetterFrequenciesRoute } from './routes';
 
 function cleanPath(uri) {
   if (uri && uri[0] === '/') {
@@ -40,8 +39,8 @@ const routes = (
   <Route path={BasePath} component={App} build={(route) => { return (BasePath === '/' ? BasePath + route : BasePath + '/' + route); }}>
     <IndexRoute component={Home} />
 
-    <Route path="static-bar-chart" name='Static Bar Chart' letters={letterData} component={StaticLetterFrequencies} />
-    <Route path="dynamic-bar-chart" name='Dynamic Bar Chart' letters={letterData} component={DynamicLetterFrequencies} />
+    <Route path="static-bar-chart" name='Static Bar Chart' letters={letterData} component={Wrapper} inject={StaticLetterFrequenciesRoute} />
+    <Route path="dynamic-bar-chart" name='Dynamic Bar Chart' letters={letterData} component={Wrapper} inject={DynamicLetterFrequenciesRoute} />
 
     <Route path="*" component={NotFound} />
   </Route>

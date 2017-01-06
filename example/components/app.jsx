@@ -12,7 +12,7 @@ export default class App extends Component {
         <div className="contain-to-grid sticky">
           <nav className="top-bar" role="navigation">
             <ul className="title-area">
-              <li className="name"><h1><Link to={baseRoute}>React VirtualDOM</Link></h1></li>
+              <li className="name"><h1><a target="_blank" href="https://github.com/timthesinner/react-vdom">React VirtualDOM</a></h1></li>
             </ul>
 
             <section className="top-bar-section">
@@ -25,7 +25,7 @@ export default class App extends Component {
               </ul>
 
               <ul className="left">
-                <li><Link to={baseRoute}>Overview</Link></li>
+                <li><Link to={baseRoute}>Home</Link></li>
               </ul>
             </section>
           </nav>
