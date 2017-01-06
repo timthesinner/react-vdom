@@ -130,10 +130,23 @@
         border-style: none;
       }
     </style>
+
+    <!-- Inject the app bundle accounting for nested routes -->
+    <script type="text/javascript">
+      var path = '/__build__/bundle.js';
+      if (window.location && window.location.pathname !== '/' + window.__ROOT_PATH__) {
+        path = '/' + window.__ROOT_PATH__ + path;
+      }
+      console.log(path);
+
+      var script = document.createElement('script');
+      script.type = 'text/javascript';
+      script.src = path;
+      document.getElementsByTagName('head')[0].appendChild(script);
+    </script>
   </head>
+  
   <body>
     <div id="body" />
-    <!-- single page app in bundle.js -->
-    <script src="/__build__/bundle.js"></script>
   </body>
 </html>
