@@ -39,7 +39,10 @@ var config = {
     vendor: [
       'babel-polyfill',
       'react',
-      'react-dom'
+      'react-dom',
+      'react-router',
+      'react-syntax-highlighter',
+      'd3'
     ]
   }, output: {
     path: path.resolve('../dist/'),

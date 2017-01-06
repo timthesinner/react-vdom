@@ -1,3 +1,20 @@
+/**
+ * Copyright (c) 2016 TimTheSinner All Rights Reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not
+ * use this file except in compliance with the License. You may obtain a copy of
+ * the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations under
+ * the License.
+ *
+ * @author TimTheSinner
+ */
 import React, { Component } from 'react';
 import { Router, Route, IndexRoute, Link, browserHistory } from 'react-router';
 
@@ -12,7 +29,7 @@ export default class App extends Component {
         <div className="contain-to-grid sticky">
           <nav className="top-bar" role="navigation">
             <ul className="title-area">
-              <li className="name"><h1><Link to={baseRoute}>React VirtualDOM</Link></h1></li>
+              <li className="name"><h1><a target="_blank" href="https://github.com/timthesinner/react-vdom">React VirtualDOM</a></h1></li>
             </ul>
 
             <section className="top-bar-section">
@@ -25,7 +42,7 @@ export default class App extends Component {
               </ul>
 
               <ul className="left">
-                <li><Link to={baseRoute}>Overview</Link></li>
+                <li><Link to={baseRoute}>Home</Link></li>
               </ul>
             </section>
           </nav>
