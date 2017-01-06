@@ -21,27 +21,33 @@
 
 import React from 'react';
 
-function keyToReact(key) {
-  if (key == 'class') {
-    return 'className';
-  }
-
-  if (key.includes('-')) {
-    const parts = key.split('-');
+function dashToCamel(str) {
+  if (str.includes('-')) {
+    const parts = str.split('-');
     for (var i = 1; i < parts.length; i++) {
       parts[i] = parts[i][0].toUpperCase() + parts[i].slice(1)
     }
     return parts.join('');
   }
-  return key;
+  return str;
+}
+
+function keyToReact(key) {
+  if (key == 'class') {
+    return 'className';
+  }
+
+  return dashToCamel(key);
 }
 
 export default class VirtualDOM {
   constructor(type = 'svg', props = {}) {
+    this.type = type;
+    this.props = { style:{}, ...props };
+
     this.ownerDocument = this;
     this.documentElement = this;
-    this.type = type;
-    this.props = props;
+    this.style = this;
   }
 
   getAttribute(key) {
@@ -50,6 +56,13 @@ export default class VirtualDOM {
 
   setAttribute(key, value) {
     this.props[keyToReact(key)] = value;
+  }
+
+  setProperty(name, value, priority) {
+    if (priority) {
+      console.log(`Encountered priority[${priority}] in setProperty`);
+    }
+    this.props.style[dashToCamel(name)] = value;
   }
 
   createElementNS(uri, name) {

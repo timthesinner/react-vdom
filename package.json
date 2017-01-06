@@ -1,5 +1,5 @@
 {
-  "name": "react-vdom",
+  "name": "react-virtual",
   "version": "1.0.0",
   "description": "React interop with libraries like D3 using virtual DOM",
   "main": "index.js",
