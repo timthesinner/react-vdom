@@ -17,7 +17,8 @@
  */
 import React from 'react';
 import { render } from 'react-dom';
-import { Router, Route, IndexRoute, browserHistory } from 'react-router';
+import { renderToString } from 'react-dom/server';
+import { Router, Route, IndexRoute, RouterContext, browserHistory, match } from 'react-router';
 
 import App from './components/app';
 import Home from './components/home';
@@ -26,14 +27,13 @@ import NotFound from './components/not-found';
 import letterData from './data/letter-frequencies';
 import Wrapper, { StaticLetterFrequenciesRoute, DynamicLetterFrequenciesRoute } from './routes';
 
-function cleanPath(uri) {
+const BasePath = ((window) => {
+  const uri = window.__ROOT_PATH__ || '/';
   if (uri && uri[0] === '/') {
     return uri;
   }
   return '/' + uri
-}
-
-const BasePath = cleanPath(window.__ROOT_PATH__ || '/');
+})(typeof window === 'undefined' ? {} : window);
 
 const routes = (
   <Route path={BasePath} component={App} build={(route) => { return (BasePath === '/' ? BasePath + route : BasePath + '/' + route); }}>
@@ -46,14 +46,25 @@ const routes = (
   </Route>
 );
 
-render(
-  <Router
-    history={browserHistory}
-    routes={routes}
-  />,
-  document.getElementById('body')
-);
+if (typeof window !== 'undefined') { //Client side
+  render(
+    <Router
+      history={browserHistory}
+      routes={routes}
+    />,
+    document.getElementById('body')
+  );
 
-if (module.hot) {
-  module.hot.accept();
+  if (module && module.hot) {
+    module.hot.accept();
+  }
+}
+
+module.exports = function render(props, callback) {
+  match({ routes, location: props.path.replace('.html', '') }, (error, redirectLocation, renderProps) => {
+    callback(null, props.template({
+      ...props,
+      content: renderToString(React.createElement(RouterContext, renderProps))
+    }));
+  });
 }

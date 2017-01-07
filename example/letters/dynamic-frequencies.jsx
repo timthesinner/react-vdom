@@ -24,7 +24,9 @@ export default class DynamicLetterFrequencies extends Component {
     super(props);
 
     this.state = { letters: props.letters.map((l) => Object.assign({}, l)) };
+  }
 
+  componentDidMount() {
     //Randomly update the letters frequency
     this.interval = setInterval(() => {
       const letter = this.state.letters[Math.floor(Math.random() * 26)];

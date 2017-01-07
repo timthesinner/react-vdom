@@ -29,7 +29,9 @@ export default class WidthWrapper extends Component {
   }
 
   updateDimensions() {
-    this.setState({width: window.innerWidth, height: window.innerHeight});
+    if (typeof window !== 'undefined') {
+      this.setState({width: window.innerWidth, height: window.innerHeight});
+    }
   }
 
   componentWillMount() {

@@ -24,6 +24,7 @@ export default class PageNotFound extends Component {
   }
 
   render() {
+    const { location } = this.props;
     return (
       <p>
         Page not found - the path, <code>{location.pathname}</code>,
