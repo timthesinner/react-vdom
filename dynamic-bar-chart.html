@@ -2,8 +2,17 @@
 <!-- Copyright (c) 2016 TimTheSinner All Rights Reserved. -->
 <html>
   <head>
-    <meta http-equiv="Content-type" content="text/html; charset=utf-8"/>
-    <title>React VirtualDOM</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>React + D3 with VirtualDOM</title>
+
+    <script type="text/javascript">
+      window.__ROOT_PATH__ = 'react-vdom';
+      if (window.location && window.location.pathname === '/' && window.history) {
+        window.history.replaceState({redirect:'root-visited'}, 'Home', '/' + window.__ROOT_PATH__);
+      }
+    </script>
+
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/foundation/5.5.3/css/foundation.min.css">
     <style>
       .center {
@@ -89,6 +98,18 @@
 exports.default = DynamicLetterFrequencies;<!-- /react-text --></code></pre></div></div></div></div>
     </div>
 
-    <script src="__build__/bundle.js"></script>
+    <!-- Inject the app bundle accounting for nested routes -->
+    <script type="text/javascript">
+      var path = '/__build__/bundle.js';
+      if (window.location && window.location.pathname !== '/' + window.__ROOT_PATH__) {
+        path = '/' + window.__ROOT_PATH__ + path;
+      }
+
+      console.log(path);
+      var script = document.createElement('script');
+      script.type = 'text/javascript';
+      script.src = path;
+      document.body.appendChild(script);
+    </script>
   </body>
 </html>
