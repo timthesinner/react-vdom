@@ -17,6 +17,8 @@
  *
  * @author TimTheSinner
  */
+import PostBuildPlugin from './post-build-plugin';
+
 var webpack = require('webpack');
 var devserver = require('webpack-dev-server');
 var dashboard = require('webpack-dashboard');
@@ -35,7 +37,7 @@ handlebars.registerHelper('custom_path', function(path) {
   return path || '';
 });
 
-const template = handlebars.compile(fs.readFileSync('example/index.html', 'utf-8'));
+const template = handlebars.compile(fs.readFileSync('example/index.handlebars', 'utf-8'));
 var config = {
   context: __dirname,
   entry: {
@@ -47,7 +49,6 @@ var config = {
       'react-router',
       'react-syntax-highlighter',
       'd3',
-      'lodash',
     ],
   },
   output: {},
@@ -92,6 +93,7 @@ if (process.argv.indexOf('-prod') !== -1) {
         template: template,
       },
     ),
+    new PostBuildPlugin(),
   ];
 } else {
   var port = 1337;

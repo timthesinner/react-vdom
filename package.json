@@ -4,7 +4,8 @@
   "description": "React interop with libraries like D3 using virtual DOM",
   "main": "src/index.js",
   "scripts": {
-    "start": "webpack -d"
+    "start": "webpack -d",
+    "build": "webpack -p -prod"
   },
   "repository": {
     "type": "git",
