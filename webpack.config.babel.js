@@ -1,9 +1,5 @@
 //Copyright (c) 2016 TimTheSinner All Rights Reserved.
 'use strict';
-<<<<<<< HEAD
-
-=======
->>>>>>> 04ad44bb2fe85f342af4d5b392c9ce039d212052
 /**
  * Copyright (c) 2016 TimTheSinner All Rights Reserved.
  *

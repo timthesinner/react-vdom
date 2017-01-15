@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!-- Copyright (c) 2016 TimTheSinner All Rights Reserved. -->
 <html>
   <head>
     <meta charset="utf-8">
@@ -11,97 +12,6 @@
         window.history.replaceState({redirect:'root-visited'}, 'Home', '/' + window.__ROOT_PATH__);
       }
     </script>
-
-    <script type="application/ld+json">
-    {
-      "@context": {
-        "name": "http://rdf.data-vocabulary.org/#name",
-        "ingredient": "http://rdf.data-vocabulary.org/#ingredients",
-        "yield": "http://rdf.data-vocabulary.org/#yield",
-        "instructions": "http://rdf.data-vocabulary.org/#instructions",
-        "step": {
-          "@id": "http://rdf.data-vocabulary.org/#step",
-          "@type": "xsd:integer"
-        },
-        "description": "http://rdf.data-vocabulary.org/#description",
-        "foaf": "http://xmlns.com/foaf/0.1/",
-        "xsd": "http://www.w3.org/2001/XMLSchema#",
-        "foaf:page": {
-          "@type": "@id"
-        }
-      },
-      "name": "React + D3",
-      "ingredient": [
-        "ReactJS",
-        "React VirtualDOM",
-        "D3",
-        "React Router"
-      ],
-      "yield": "1 awesome webpage",
-      "instructions": [
-        {
-          "step": 1,
-          "description": "Read static data on load."
-        },
-        {
-          "step": 2,
-          "description": "Pass static data to React components through routes."
-        },
-        {
-          "step": 3,
-          "description": "In render blocks, pass a VirtualDOM node to the D3 select."
-        },
-        {
-          "step": 4,
-          "description": "Use D3 to manipulate VirtualDOM as you would standard DOM."
-        },
-        {
-          "step": 5,
-          "description": "Transform VirtualDOM to React by emitting the VirtualDOM's render routine."
-        }
-      ],
-      "foaf:page": "https://github.com/timthesinner/react-vdom"
-    }
-    </script>
-
-    <!-- Start Single Page Apps for GitHub Pages -->
-    <script type="text/javascript">
-      /////////////////////////////////////////////////////////////////////////
-      // Single Page Apps for GitHub Pages
-      // https://github.com/rafrex/spa-github-pages
-      // Copyright (c) 2016 Rafael Pedicini, licensed under the MIT License
-      // ----------------------------------------------------------------------
-      /////////////////////////////////////////////////////////////////////////
-      (function(l) {
-        if (l.search) {
-          var q = {};
-          l.search.slice(1).split('&').forEach(function(v) {
-            var a = v.split('=');
-            q[a[0]] = a.slice(1).join('=').replace(/~and~/g, '&');
-          });
-          if (q.p !== undefined) {
-            window.history.replaceState(null, null,
-              l.pathname.slice(0, -1) + (q.p || '') +
-              (q.q ? ('?' + q.q) : '') +
-              l.hash
-            );
-          }
-        }
-      }(window.location))
-    </script>
-    <!-- End Single Page Apps for GitHub Pages -->
-
-    <!-- Start Google Analytics -->
-    <script>
-      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-      ga('create', 'UA-89444069-1', 'auto');
-      ga('send', 'pageview');
-    </script>
-    <!-- End Google Analytics -->
 
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/foundation/5.5.3/css/foundation.min.css">
     <style>
@@ -126,10 +36,45 @@
         display: none;
       }
 
+      a {
+        margin-left: 6px;
+        margin-right: 6px;
+      }
+
       code {
         border-style: none;
       }
     </style>
+  </head>
+  <body>
+    <div id="body">
+      <div class="large-12 columns" data-reactroot="" data-reactid="1" data-react-checksum="1403019902"><div class="contain-to-grid sticky" data-reactid="2"><nav class="top-bar" role="navigation" data-reactid="3"><ul class="title-area" data-reactid="4"><li class="name" data-reactid="5"><h1 data-reactid="6"><a target="_blank" href="https://github.com/timthesinner/react-vdom" data-reactid="7">React VirtualDOM</a></h1></li></ul><section class="top-bar-section" data-reactid="8"><ul class="right" data-reactid="9"><li class="has-dropdown" data-reactid="10"><a style="text-align:end;" data-reactid="11">Example Charts</a></li></ul><ul class="left" data-reactid="12"><li data-reactid="13"><a href="/" data-reactid="14">Home</a></li></ul></section></nav></div><div class="center" data-reactid="15"><h1 data-reactid="16">Seamless D3 and React</h1><p data-reactid="17">Transform your existing D3 charts (or make new ones) and take advantage of React&#x27;s advanced DOM manipulation and diff capabilitites.  Simply include the VirtualDOM class and pass that off to the D3.select and D3 will emit React nodes instead of document.createElement.</p><hr data-reactid="18"/><div data-reactid="19"><h3 data-reactid="20">Simple Example</h3><p data-reactid="21"><!-- react-text: 22 -->Source for this example was adopted from<!-- /react-text --><a target="_blank" href="https://bost.ocks.org/mike/circles/" data-reactid="23">Three (4) Little Circles</a></p></div><svg style="display:block;" width="375" class="center" data-reactid="24"><circle style="fill:steelblue;" cy="60" cx="30" r="5.656854249492381" data-reactid="25"></circle><circle style="fill:steelblue;" cy="60" cx="130" r="7.54983443527075" data-reactid="26"></circle><circle style="fill:steelblue;" cy="60" cx="230" r="10.583005244258363" data-reactid="27"></circle><circle style="fill:steelblue;" cy="60" cx="330" r="17.11724276862369" data-reactid="28"></circle></svg><p data-reactid="29"><span data-reactid="30">And the ES6</span><a target="_blank" href="https://github.com/timthesinner/react-vdom/blob/master/example/components/example.jsx" data-reactid="31">source</a><span data-reactid="32">for this example</span></p><pre style="display:block;overflow-x:auto;padding:0.5em;color:#333;background:#f8f8f8;" data-reactid="33"><code data-reactid="34"><!-- react-text: 35 -->
+<!-- /react-text --><span style="color:#998;font-style:italic;" data-reactid="36"><!-- react-text: 37 -->//Copyright (c) 2016 TimTheSinner All Rights Reserved.<!-- /react-text --></span><!-- react-text: 38 -->
+<!-- /react-text --><span style="color:#333;font-weight:bold;" data-reactid="39"><!-- react-text: 40 -->import<!-- /react-text --></span><!-- react-text: 41 --> React, { Component } <!-- /react-text --><span style="color:#333;font-weight:bold;" data-reactid="42"><!-- react-text: 43 -->from<!-- /react-text --></span><!-- react-text: 44 --> <!-- /react-text --><span style="color:#d14;" data-reactid="45"><!-- react-text: 46 -->&#x27;react&#x27;<!-- /react-text --></span><!-- react-text: 47 -->;
+
+<!-- /react-text --><span style="color:#333;font-weight:bold;" data-reactid="48"><!-- react-text: 49 -->import<!-- /react-text --></span><!-- react-text: 50 --> * <!-- /react-text --><span style="color:#333;font-weight:bold;" data-reactid="51"><!-- react-text: 52 -->as<!-- /react-text --></span><!-- react-text: 53 --> d3 <!-- /react-text --><span style="color:#333;font-weight:bold;" data-reactid="54"><!-- react-text: 55 -->from<!-- /react-text --></span><!-- react-text: 56 --> <!-- /react-text --><span style="color:#d14;" data-reactid="57"><!-- react-text: 58 -->&#x27;d3&#x27;<!-- /react-text --></span><!-- react-text: 59 -->;
+<!-- /react-text --><span style="color:#333;font-weight:bold;" data-reactid="60"><!-- react-text: 61 -->import<!-- /react-text --></span><!-- react-text: 62 --> VirtualDOM <!-- /react-text --><span style="color:#333;font-weight:bold;" data-reactid="63"><!-- react-text: 64 -->from<!-- /react-text --></span><!-- react-text: 65 --> <!-- /react-text --><span style="color:#d14;" data-reactid="66"><!-- react-text: 67 -->&#x27;../../src&#x27;<!-- /react-text --></span><!-- react-text: 68 -->;
+
+<!-- /react-text --><span style="color:#333;font-weight:bold;" data-reactid="69"><!-- react-text: 70 -->export<!-- /react-text --></span><!-- react-text: 71 --> <!-- /react-text --><span style="color:#333;font-weight:bold;" data-reactid="72"><!-- react-text: 73 -->default<!-- /react-text --></span><!-- react-text: 74 --> <!-- /react-text --><span data-reactid="75"><span style="color:#333;font-weight:bold;" data-reactid="76"><!-- react-text: 77 -->class<!-- /react-text --></span><!-- react-text: 78 --> <!-- /react-text --><span style="color:#900;font-weight:bold;" data-reactid="79"><!-- react-text: 80 -->SimpleExample<!-- /react-text --></span><!-- react-text: 81 --> <!-- /react-text --><span style="color:#333;font-weight:bold;" data-reactid="82"><!-- react-text: 83 -->extends<!-- /react-text --></span><!-- react-text: 84 --> <!-- /react-text --><span style="color:#900;font-weight:bold;" data-reactid="85"><!-- react-text: 86 -->Component<!-- /react-text --></span><!-- react-text: 87 --> <!-- /react-text --></span><!-- react-text: 88 -->{
+  render() {
+    <!-- /react-text --><span style="color:#998;font-style:italic;" data-reactid="89"><!-- react-text: 90 -->//Initialize a new VirtualDOM tree with a root tag of svg and some direct attributes<!-- /react-text --></span><!-- react-text: 91 -->
+    <!-- /react-text --><span style="color:#333;font-weight:bold;" data-reactid="92"><!-- react-text: 93 -->const<!-- /react-text --></span><!-- react-text: 94 --> dom = <!-- /react-text --><span style="color:#333;font-weight:bold;" data-reactid="95"><!-- react-text: 96 -->new<!-- /react-text --></span><!-- react-text: 97 --> VirtualDOM(<!-- /react-text --><span style="color:#d14;" data-reactid="98"><!-- react-text: 99 -->&#x27;svg&#x27;<!-- /react-text --></span><!-- react-text: 100 -->, {<!-- /react-text --><span data-reactid="101"><!-- react-text: 102 -->width<!-- /react-text --></span><!-- react-text: 103 -->:<!-- /react-text --><span style="color:#008080;" data-reactid="104"><!-- react-text: 105 -->375<!-- /react-text --></span><!-- react-text: 106 -->, <!-- /react-text --><span data-reactid="107"><!-- react-text: 108 -->className<!-- /react-text --></span><!-- react-text: 109 -->:<!-- /react-text --><span style="color:#d14;" data-reactid="110"><!-- react-text: 111 -->&#x27;center&#x27;<!-- /react-text --></span><!-- react-text: 112 -->, <!-- /react-text --><span data-reactid="113"><!-- react-text: 114 -->style<!-- /react-text --></span><!-- react-text: 115 -->:{<!-- /react-text --><span data-reactid="116"><!-- react-text: 117 -->display<!-- /react-text --></span><!-- react-text: 118 -->:<!-- /react-text --><span style="color:#d14;" data-reactid="119"><!-- react-text: 120 -->&#x27;block&#x27;<!-- /react-text --></span><!-- react-text: 121 -->}});
+
+    d3.select(dom) <!-- /react-text --><span style="color:#998;font-style:italic;" data-reactid="122"><!-- react-text: 123 -->//The magic happens here, D3 is emitting React Nodes instead of Elements<!-- /react-text --></span><!-- react-text: 124 -->
+      .selectAll(<!-- /react-text --><span style="color:#d14;" data-reactid="125"><!-- react-text: 126 -->&quot;circle&quot;<!-- /react-text --></span><!-- react-text: 127 -->).data([<!-- /react-text --><span style="color:#008080;" data-reactid="128"><!-- react-text: 129 -->32<!-- /react-text --></span><!-- react-text: 130 -->, <!-- /react-text --><span style="color:#008080;" data-reactid="131"><!-- react-text: 132 -->57<!-- /react-text --></span><!-- react-text: 133 -->, <!-- /react-text --><span style="color:#008080;" data-reactid="134"><!-- react-text: 135 -->112<!-- /react-text --></span><!-- react-text: 136 -->, <!-- /react-text --><span style="color:#008080;" data-reactid="137"><!-- react-text: 138 -->293<!-- /react-text --></span><!-- react-text: 139 -->])
+      .enter().append(<!-- /react-text --><span style="color:#d14;" data-reactid="140"><!-- react-text: 141 -->&quot;circle&quot;<!-- /react-text --></span><!-- react-text: 142 -->)
+        .style(<!-- /react-text --><span style="color:#d14;" data-reactid="143"><!-- react-text: 144 -->&quot;fill&quot;<!-- /react-text --></span><!-- react-text: 145 -->, <!-- /react-text --><span style="color:#d14;" data-reactid="146"><!-- react-text: 147 -->&quot;steelblue&quot;<!-- /react-text --></span><!-- react-text: 148 -->)
+        .attr(<!-- /react-text --><span style="color:#d14;" data-reactid="149"><!-- react-text: 150 -->&quot;cy&quot;<!-- /react-text --></span><!-- react-text: 151 -->, <!-- /react-text --><span style="color:#008080;" data-reactid="152"><!-- react-text: 153 -->60<!-- /react-text --></span><!-- react-text: 154 -->)
+        .attr(<!-- /react-text --><span style="color:#d14;" data-reactid="155"><!-- react-text: 156 -->&quot;cx&quot;<!-- /react-text --></span><!-- react-text: 157 -->, (d, i) =&gt; i * <!-- /react-text --><span style="color:#008080;" data-reactid="158"><!-- react-text: 159 -->100<!-- /react-text --></span><!-- react-text: 160 --> + <!-- /react-text --><span style="color:#008080;" data-reactid="161"><!-- react-text: 162 -->30<!-- /react-text --></span><!-- react-text: 163 -->)
+        .attr(<!-- /react-text --><span style="color:#d14;" data-reactid="164"><!-- react-text: 165 -->&quot;r&quot;<!-- /react-text --></span><!-- react-text: 166 -->, (d) =&gt; <!-- /react-text --><span style="color:#0086b3;" data-reactid="167"><!-- react-text: 168 -->Math<!-- /react-text --></span><!-- react-text: 169 -->.sqrt(d));
+
+    <!-- /react-text --><span style="color:#998;font-style:italic;" data-reactid="170"><!-- react-text: 171 -->//Return the virtual dom as a React tree rooted at the &#x27;tag&#x27; in this case svg.<!-- /react-text --></span><!-- react-text: 172 -->
+    <!-- /react-text --><span style="color:#998;font-style:italic;" data-reactid="173"><!-- react-text: 174 -->//React will diff this tree and update only nodes that need to be refreshed!<!-- /react-text --></span><!-- react-text: 175 -->
+    <!-- /react-text --><span style="color:#333;font-weight:bold;" data-reactid="176"><!-- react-text: 177 -->return<!-- /react-text --></span><!-- react-text: 178 --> dom.render();
+  }
+}
+<!-- /react-text --></code></pre></div></div>
+    </div>
 
     <!-- Inject the app bundle accounting for nested routes -->
     <script type="text/javascript">
@@ -137,16 +82,23 @@
       if (window.location && window.location.pathname !== '/' + window.__ROOT_PATH__) {
         path = '/' + window.__ROOT_PATH__ + path;
       }
-      console.log(path);
 
+      console.log(path);
       var script = document.createElement('script');
       script.type = 'text/javascript';
       script.src = path;
-      document.getElementsByTagName('head')[0].appendChild(script);
+      document.body.appendChild(script);
     </script>
-  </head>
-  
-  <body>
-    <div id="body" />
+
+    <!-- Start Google Analytics -->
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+      ga('create', 'UA-89444069-1', 'auto');
+      ga('send', 'pageview');
+    </script>
+    <!-- End Google Analytics -->
   </body>
 </html>
