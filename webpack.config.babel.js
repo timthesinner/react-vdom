@@ -17,7 +17,7 @@
  *
  * @author TimTheSinner
  */
-import PostBuildPlugin from './post-build-plugin';
+import PostBuildPlugin from './plugins/post-build-plugin';
 
 var webpack = require('webpack');
 var devserver = require('webpack-dev-server');
@@ -61,7 +61,7 @@ var config = {
       },
     ],
   },
-  resolveLoader: { alias: { 'source-loader': path.join(__dirname, './source-loader') } },
+  resolveLoader: { alias: { 'source-loader': path.join(__dirname, 'plugins', 'source-loader') } },
   resolve: { root: [ path.resolve('./src') ], extensions: [ '', '.js', '.jsx' ] },
 };
 
