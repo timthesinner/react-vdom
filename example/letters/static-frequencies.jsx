@@ -77,7 +77,7 @@ export default class StaticLetterFrequencies extends Component {
 
     g.selectAll(".bar").data(letters).enter().append("rect").attr("class", "bar").attr("x", (d) => {
       return x(d.letter);
-    }).attr('key', (d) => {
+    }).attr('key', (d) => { // Map a key property so React can be smart about updating DOM
       return d.letter;
     }).attr("y", (d) => {
       return y(d.frequency);
