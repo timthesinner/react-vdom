@@ -1,6 +1,5 @@
 //Copyright (c) 2016 TimTheSinner All Rights Reserved.
 'use strict';
-
 /**
  * Copyright (c) 2016 TimTheSinner All Rights Reserved.
  *
@@ -18,14 +17,13 @@
  *
  * @author TimTheSinner
  */
-
 import React from 'react';
 
 function dashToCamel(str) {
   if (str.includes('-')) {
     const parts = str.split('-');
     for (var i = 1; i < parts.length; i++) {
-      parts[i] = parts[i][0].toUpperCase() + parts[i].slice(1)
+      parts[i] = parts[i][0].toUpperCase() + parts[i].slice(1);
     }
     return parts.join('');
   }
@@ -43,7 +41,7 @@ function keyToReact(key) {
 export default class VirtualDOM {
   constructor(type = 'svg', props = {}) {
     this.type = type;
-    this.props = { style:{}, ...props };
+    this.props = { style: {}, ...props };
 
     this.ownerDocument = this;
     this.documentElement = this;
@@ -70,7 +68,7 @@ export default class VirtualDOM {
   }
 
   insertBefore(child, next) {
-    if (! next) {
+    if (!next) {
       return this.appendChild(child);
     } else {
       if (Array.isArray(this.children)) {
@@ -81,7 +79,7 @@ export default class VirtualDOM {
           this.children.unshift(child);
         }
       } else if (this.children) {
-        this.children = [child, this.children];
+        this.children = [ child, this.children ];
       } else {
         this.children = child;
       }
@@ -92,7 +90,7 @@ export default class VirtualDOM {
   querySelector(selector) {
     if (selector[0] === '.') {
       selector = selector.slice(1);
-      return this.children.find((c) => {
+      return this.children.find(c => {
         return c.props.className && c.props.className.includes(selector);
       });
     }
@@ -103,7 +101,7 @@ export default class VirtualDOM {
     if (Array.isArray(this.children)) {
       this.children.push(dom);
     } else if (this.children) {
-      this.children = [this.children, dom];
+      this.children = [ this.children, dom ];
     } else {
       this.children = dom;
     }
@@ -112,23 +110,23 @@ export default class VirtualDOM {
 
   querySelectorAll(selector) {
     const { children } = this;
-    if (! selector) {
+    if (!selector) {
       if (Array.isArray(children)) {
         return children;
       } else if (children) {
-        return [children];
+        return [ children ];
       }
     }
 
     if (selector[0] === '.') {
       selector = selector.slice(1);
       if (Array.isArray(children)) {
-        return children.filter((c) => {
+        return children.filter(c => {
           return c.props.className && c.props.className.includes(selector);
         });
       } else if (children) {
         if (children.props.className && c.props.className.includes(selector)) {
-          return [children];
+          return [ children ];
         }
       }
     }
@@ -140,13 +138,21 @@ export default class VirtualDOM {
     const { children } = this;
     if (Array.isArray(children)) {
       return children.map((c, i) => {
-        if (! c.render) { return c; }
-        if (! c.props.key) { c.props.key = this.props.key + '-' + i; }
-        return c.render()
+        if (!c.render) {
+          return c;
+        }
+        if (!c.props.key) {
+          c.props.key = this.props.key + '-' + i;
+        }
+        return c.render();
       });
     } else if (children) {
-      if (! children.render) { return children; }
-      if (! children.props.key) { children.props.key = this.props.key + '-0'; }
+      if (!children.render) {
+        return children;
+      }
+      if (!children.props.key) {
+        children.props.key = this.props.key + '-0';
+      }
       return this.children.render();
     }
   }

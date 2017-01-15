@@ -47,6 +47,7 @@ var config = {
       'react-router',
       'react-syntax-highlighter',
       'd3',
+      'lodash',
     ],
   },
   output: {},
@@ -59,6 +60,7 @@ var config = {
       },
     ],
   },
+  resolveLoader: { alias: { 'source-loader': path.join(__dirname, './source-loader') } },
   resolve: { root: [ path.resolve('./src') ], extensions: [ '', '.js', '.jsx' ] },
 };
 
