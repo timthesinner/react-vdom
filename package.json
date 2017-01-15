@@ -2,9 +2,9 @@
   "name": "react-virtual",
   "version": "1.0.0",
   "description": "React interop with libraries like D3 using virtual DOM",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
-    "example": "node example/test-server.js"
+    "start": "webpack -d"
   },
   "repository": {
     "type": "git",
@@ -20,7 +20,7 @@
   "bugs": {
     "url": "https://github.com/timthesinner/react-vdom/issues"
   },
-  "homepage": "https://github.com/timthesinner/react-vdom#readme",
+  "homepage": "https://timthesinner.github.io/react-vdom/",
   "devDependencies": {
     "babel-core": "^6.21.0",
     "babel-loader": "^6.2.10",
