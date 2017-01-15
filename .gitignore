@@ -1,3 +1,8 @@
+# Start Production Ignores
+*.html
+__build__/
+# End Production Ignores
+
 node_modules
 npm-debug.log
 dist/

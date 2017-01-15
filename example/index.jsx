@@ -37,7 +37,20 @@ if (typeof window !== 'undefined') { //Client side
 }
 
 module.exports = function render(props, callback) {
-  match({ routes, location: props.path.replace('.html', '') }, (error, redirectLocation, renderProps) => {
+  const location = props.path.replace('.html', '');
+  match({ routes: Routes, location: location }, (error, redirectLocation, renderProps) => {
+    if (error) {
+      console.dir(error);
+      throw error;
+    } else if (redirectLocation) {
+      console.dir(redirectLocation);
+      throw redirectLocation;
+    } else if (! renderProps) {
+      console.error('Render properties was empty, bad route supplied.');
+      throw `${location} is not mapped to a route`
+    }
+
+    console.log('Rendering', location);
     callback(null, props.template({
       ...props,
       content: renderToString(React.createElement(RouterContext, renderProps))
