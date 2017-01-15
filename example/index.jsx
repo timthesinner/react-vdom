@@ -20,37 +20,13 @@ import { render } from 'react-dom';
 import { renderToString } from 'react-dom/server';
 import { Router, Route, IndexRoute, RouterContext, browserHistory, match } from 'react-router';
 
-import App from './components/app';
-import Home from './components/home';
-import NotFound from './components/not-found';
-
-import letterData from './data/letter-frequencies';
-import Wrapper, { StaticLetterFrequenciesRoute, DynamicLetterFrequenciesRoute } from './routes';
-
-const BasePath = ((window) => {
-  const uri = window.__ROOT_PATH__ || '/';
-  if (uri && uri[0] === '/') {
-    return uri;
-  }
-  return '/' + uri
-})(typeof window === 'undefined' ? {} : window);
-
-const routes = (
-  <Route path={BasePath} component={App} build={(route) => { return (BasePath === '/' ? BasePath + route : BasePath + '/' + route); }}>
-    <IndexRoute component={Home} />
-
-    <Route path="static-bar-chart" name='Static Bar Chart' letters={letterData} component={Wrapper} inject={StaticLetterFrequenciesRoute} />
-    <Route path="dynamic-bar-chart" name='Dynamic Bar Chart' letters={letterData} component={Wrapper} inject={DynamicLetterFrequenciesRoute} />
-
-    <Route path="*" component={NotFound} />
-  </Route>
-);
+import Routes from './routes';
 
 if (typeof window !== 'undefined') { //Client side
   render(
     <Router
       history={browserHistory}
-      routes={routes}
+      routes={Routes}
     />,
     document.getElementById('body')
   );
