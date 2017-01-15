@@ -1,3 +1,4 @@
+//Copyright (c) 2016 TimTheSinner All Rights Reserved.
 /**
  * Copyright (c) 2016 TimTheSinner All Rights Reserved.
  *

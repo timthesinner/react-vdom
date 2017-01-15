@@ -1,4 +1,3 @@
-//Copyright (c) 2016 TimTheSinner All Rights Reserved.
 /**
  * Copyright (c) 2016 TimTheSinner All Rights Reserved.
  *
@@ -18,32 +17,38 @@
  */
 import React, { Component } from 'react';
 
-import * as StaticLetterFrequencies from './static-frequencies';
-
-export default class DynamicLetterFrequencies extends Component {
+//Export a wrapper class that handles window re-size events
+export default class ResizeWrapper extends Component {
   constructor(props) {
     super(props);
-
-    this.state = { letters: props.letters.map((l) => Object.assign({}, l)) };
+    this.state = {};
+    this.updateDimensions = this.updateDimensions.bind(this);
   }
 
-  componentDidMount() {
-    //Randomly update the letters frequency
-    this.interval = setInterval(() => {
-      const letter = this.state.letters[Math.floor(Math.random() * 26)];
-      letter.frequency = Math.random() * (0.25 - 0.01) + 0.01;
-      this.setState({letters: this.state.letters});
-    }, 50);
-  }
-
-  componentWillUnmount() {
-    if (this.interval) {
-      clearInterval(this.interval);
+  updateDimensions() {
+    if (typeof window !== 'undefined') {
+      this.setState({ width: window.innerWidth, height: window.innerHeight });
     }
   }
 
+  componentWillMount() {
+    this.updateDimensions();
+  }
+
+  componentDidMount() {
+    window.addEventListener('resize', this.updateDimensions);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.updateDimensions);
+  }
+
   render() {
-    //Render a new bar chart every state update
-    return <StaticLetterFrequencies.default letters={this.state.letters} width={this.props.width}/>;
+    const InjectedComponent = this.props.route.inject;
+    return (
+      <div className="center">
+        <InjectedComponent {...this.props} {...this.state} />
+      </div>
+    );
   }
 }

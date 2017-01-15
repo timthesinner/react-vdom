@@ -15,23 +15,9 @@
  *
  * @author TimTheSinner
  */
-import React, { Component, PropTypes } from 'react';
-import { Link } from 'react-router'
-
-export default class PageNotFound extends Component {
-  static propTypes = {
-    location: PropTypes.object.isRequired
-  }
-
-  render() {
-    const { location } = this.props;
-    return (
-      <div className="center">
-        <p>
-          Page not found - the path, <code>{location.pathname}</code>, does not have an example.
-          <Link to='/'>Head back home</Link>
-        </p>
-    </div>
-    );
-  }
-}
+var fs = require('fs');
+module.exports = function(content) {
+  this.cacheable && this.cacheable();
+  return "module.exports = " + JSON.stringify(fs.readFileSync(this.resourcePath, "utf8")) + ';';
+};
+module.exports.raw = true;

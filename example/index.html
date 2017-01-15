@@ -2,8 +2,17 @@
 <!-- Copyright (c) 2016 TimTheSinner All Rights Reserved. -->
 <html>
   <head>
-    <meta http-equiv="Content-type" content="text/html; charset=utf-8"/>
-    <title><%= htmlWebpackPlugin.options.title %></title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ custom_title title }}</title>
+
+    <script type="text/javascript">
+      window.__ROOT_PATH__ = '{{ custom_path root_path }}';
+      if (window.location && window.location.pathname === '/' && window.history) {
+        window.history.replaceState({redirect:'root-visited'}, 'Home', '/' + window.__ROOT_PATH__);
+      }
+    </script>
+
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/foundation/5.5.3/css/foundation.min.css">
     <style>
       .center {
@@ -27,12 +36,46 @@
         display: none;
       }
 
+      a {
+        margin-left: 6px;
+        margin-right: 6px;
+      }
+
       code {
         border-style: none;
       }
     </style>
   </head>
   <body>
-    <div id="body" />
+    <div id="body">
+      {{{ content }}}
+    </div>
+
+    {{#if production}}
+    <!-- Inject the app bundle accounting for nested routes -->
+    <script type="text/javascript">
+      var path = '/__build__/bundle.js';
+      if (window.location && window.location.pathname !== '/' + window.__ROOT_PATH__) {
+        path = '/' + window.__ROOT_PATH__ + path;
+      }
+
+      console.log(path);
+      var script = document.createElement('script');
+      script.type = 'text/javascript';
+      script.src = path;
+      document.body.appendChild(script);
+    </script>
+
+    <!-- Start Google Analytics -->
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+      ga('create', 'UA-89444069-1', 'auto');
+      ga('send', 'pageview');
+    </script>
+    <!-- End Google Analytics -->
+    {{/if}}
   </body>
 </html>

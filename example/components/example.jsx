@@ -1,3 +1,4 @@
+//Copyright (c) 2016 TimTheSinner All Rights Reserved.
 /**
  * Copyright (c) 2016 TimTheSinner All Rights Reserved.
  *
@@ -25,7 +26,7 @@ export default class SimpleExample extends Component {
     //Initialize a new VirtualDOM tree with a root tag of svg and some direct attributes
     const dom = new VirtualDOM('svg', {width:375, className:'center', style:{display:'block'}});
 
-    d3.select(dom) //The magic happens here, from this point forward D3 is emitting React VirtualDOM
+    d3.select(dom) //The magic happens here, D3 is emitting React Nodes instead of Elements
       .selectAll("circle").data([32, 57, 112, 293])
       .enter().append("circle")
         .style("fill", "steelblue")

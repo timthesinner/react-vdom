@@ -17,8 +17,9 @@
  */
 import React, { Component } from 'react';
 
-import FormattedSource from './formatted-source';
-const SOURCE_CODE = require('raw-loader!../letters/static-frequencies');
+import FormattedSource from '../components/formatted-source';
+
+const SOURCE_CODE = require('source-loader!../letters/static-frequencies');
 import StaticLetterFrequencies from '../letters/static-frequencies';
 
 export default class StaticLetterFrequenciesRoute extends Component {

@@ -18,55 +18,41 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
 
+import FormattedSource from './formatted-source';
+
+const SOURCE_CODE = require('source-loader!./example');
 import Example from './example';
-import SyntaxHighlighter from 'react-syntax-highlighter';
-import { github } from 'react-syntax-highlighter/dist/styles';
 
 export default class Home extends Component {
   render() {
     const { childRoutes } = this.props.routes[0];
+    const source = 'https://github.com/timthesinner/react-vdom/blob/master/example/components/example.jsx';
     return (
       <div className="center">
         <h1>Seamless D3 and React</h1>
-        <p>Transform your existing D3 charts (or make new ones) and take advantage of React's advanced DOM manipulatin and diff capabilitites.  Simply include the VirtualDOM class and pass that off to the D3.select and D3 will emit React nodes instead of document.createElement.</p>
+        <p>
+          Transform your existing D3 charts (or make new ones) and take advantage of React's advanced DOM manipulation and diff capabilitites.  Simply include the VirtualDOM class and pass that off to the D3.select and D3 will emit React nodes instead of document.createElement.
+        </p>
         <hr />
         <div>
           <h3>Simple Example</h3>
           <p>
             Source for this example was adopted from
-            <a target="_blank" href="https://bost.ocks.org/mike/circles/"> Three (4) Little Circles</a>
+            <a target="_blank" href="https://bost.ocks.org/mike/circles/">
+              Three (4) Little Circles
+            </a>
           </p>
         </div>
         <Example />
         <p>
-          And the ES6 <a target="_blank" href="https://github.com/timthesinner/react-vdom/blob/master/example/components/example.jsx">source</a> for this example
+          <span>And the ES6</span>
+          <a target="_blank" href={source}>
+            source
+          </a>
+          <span>for this example</span>
         </p>
-        <SyntaxHighlighter language='jsx' style={github}>{
-`import React, { Component } from 'react';
-
-import * as d3 from 'd3';
-import VirtualDOM from 'react-virtual';
-
-export default class SimpleExample extends Component {
-  render() {
-    //Initialize a new VirtualDOM tree with a root tag of svg and some default attributes
-    const dom = new VirtualDOM('svg', {width:375, className:'center', style:{display:'block'}});
-
-    d3.select(dom) //The magic happens here, from this point forward D3 is emitting React VirtualDOM
-      .selectAll("circle").data([32, 57, 112, 293])
-      .enter().append("circle")
-        .style("fill", "steelblue")
-        .attr("cy", 60)
-        .attr("cx", (d, i) => i * 100 + 30)
-        .attr("r", (d) => Math.sqrt(d));
-
-    //Return the virtual dom as a React tree rooted at the 'tag' in this case svg.
-    //React will diff this tree and update only nodes that need to be refreshed!
-    return dom.render();
-  }
-}`}
-        </SyntaxHighlighter>
+        <FormattedSource source={SOURCE_CODE} />
       </div>
-    )
+    );
   }
 }

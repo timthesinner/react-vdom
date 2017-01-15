@@ -17,43 +17,30 @@
  */
 import React from 'react';
 import { render } from 'react-dom';
-import { Router, Route, IndexRoute, browserHistory } from 'react-router';
+import { renderToString } from 'react-dom/server';
+import { Router, Route, IndexRoute, RouterContext, browserHistory, match } from 'react-router';
 
-import App from './components/app';
-import Home from './components/home';
-import NotFound from './components/not-found';
+import Routes from './routes';
 
-import letterData from './data/letter-frequencies';
-import Wrapper, { StaticLetterFrequenciesRoute, DynamicLetterFrequenciesRoute } from './routes';
+if (typeof window !== 'undefined') { //Client side
+  render(
+    <Router
+      history={browserHistory}
+      routes={Routes}
+    />,
+    document.getElementById('body')
+  );
 
-function cleanPath(uri) {
-  if (uri && uri[0] === '/') {
-    return uri;
+  if (module && module.hot) {
+    module.hot.accept();
   }
-  return '/' + uri
 }
 
-const BasePath = cleanPath(window.__ROOT_PATH__ || '/');
-
-const routes = (
-  <Route path={BasePath} component={App} build={(route) => { return (BasePath === '/' ? BasePath + route : BasePath + '/' + route); }}>
-    <IndexRoute component={Home} />
-
-    <Route path="static-bar-chart" name='Static Bar Chart' letters={letterData} component={Wrapper} inject={StaticLetterFrequenciesRoute} />
-    <Route path="dynamic-bar-chart" name='Dynamic Bar Chart' letters={letterData} component={Wrapper} inject={DynamicLetterFrequenciesRoute} />
-
-    <Route path="*" component={NotFound} />
-  </Route>
-);
-
-render(
-  <Router
-    history={browserHistory}
-    routes={routes}
-  />,
-  document.getElementById('body')
-);
-
-if (module.hot) {
-  module.hot.accept();
+module.exports = function render(props, callback) {
+  match({ routes, location: props.path.replace('.html', '') }, (error, redirectLocation, renderProps) => {
+    callback(null, props.template({
+      ...props,
+      content: renderToString(React.createElement(RouterContext, renderProps))
+    }));
+  });
 }

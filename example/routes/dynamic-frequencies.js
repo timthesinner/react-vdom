@@ -17,9 +17,9 @@
  */
 import React, { Component } from 'react';
 
-import FormattedSource from './formatted-source';
+import FormattedSource from '../components/formatted-source';
 
-const SOURCE_CODE = require('raw-loader!../letters/dynamic-frequencies');
+const SOURCE_CODE = require('source-loader!../letters/dynamic-frequencies');
 import DynamicLetterFrequencies from '../letters/dynamic-frequencies';
 
 export default class DynamicLetterFrequenciesRoute extends Component {

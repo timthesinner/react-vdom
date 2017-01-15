@@ -16,40 +16,35 @@
  * @author TimTheSinner
  */
 import React, { Component } from 'react';
+import { Router, Route, IndexRoute } from 'react-router';
+
+import App from '../components/app';
+import Home from '../components/home';
+import NotFound from '../components/not-found';
+
+import letterData from '../data/letter-frequencies';
 
  //Export all appliance routable components
-export { default as StaticLetterFrequenciesRoute } from './static-frequencies';
-export { default as DynamicLetterFrequenciesRoute } from './dynamic-frequencies';
+import { default as StaticLetterFrequenciesRoute } from './static-frequencies';
+import { default as DynamicLetterFrequenciesRoute } from './dynamic-frequencies';
+import ResizeWrapper from './wrapper';
 
-export default class WidthWrapper extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-    this.updateDimensions = this.updateDimensions.bind(this);
+const BasePath = ((window) => {
+  const uri = window.__ROOT_PATH__ || '/';
+  if (uri && uri[0] === '/') {
+    return uri;
   }
+  return '/' + uri
+})(typeof window === 'undefined' ? {} : window);
 
-  updateDimensions() {
-    this.setState({width: window.innerWidth, height: window.innerHeight});
-  }
+//Export appliance routes
+const Routes = <Route path={BasePath} component={App} build={(route) => { return (BasePath === '/' ? BasePath + route : BasePath + '/' + route); }}>
+  <IndexRoute component={Home} />
 
-  componentWillMount() {
-    this.updateDimensions();
-  }
+  <Route path="static-bar-chart" name='Static Bar Chart' letters={letterData} component={ResizeWrapper} inject={StaticLetterFrequenciesRoute} />
+  <Route path="dynamic-bar-chart" name='Dynamic Bar Chart' letters={letterData} component={ResizeWrapper} inject={DynamicLetterFrequenciesRoute} />
 
-  componentDidMount() {
-    window.addEventListener("resize", this.updateDimensions);
-  }
+  <Route path="*" component={NotFound} />
+</Route>;
 
-  componentWillUnmount() {
-    window.removeEventListener("resize", this.updateDimensions);
-  }
-
-  render() {
-    const InjectedComponent = this.props.route.inject;
-    return (
-      <div className="center">
-        <InjectedComponent {...this.props} {...this.state} />
-      </div>
-    );
-  }
-}
+export default Routes;

@@ -23,7 +23,7 @@ function cleanSource(source) {
   const output = [];
 
   let comment = false;
-  for (var line of source.split('\n')) {
+  for (var line of source.trim().split('\n')) {
     if (line.includes('/*')) {
       comment = true;
     } else if (line.includes('*/')) {
@@ -33,23 +33,28 @@ function cleanSource(source) {
     }
   }
 
-  return output.join('\n').replace(/\n(\s*\n){2,}/g, '\n\n');
+  return '\n' + output.join('\n').replace(/\n(\s*\n){2,}/g, '\n\n') + '\n';
 }
 
 
 export default class FormatedSource extends Component {
   render() {
+    const { jsxSource, originalSource, source, name } = this.props;
+    if (!jsxSource || !originalSource || !name) {
+      return <SyntaxHighlighter language='jsx' style={github}>{cleanSource(source)}</SyntaxHighlighter>
+    }
+    
     return (
       <div>
         <hr />
         <span>
-          <h3 style={{display:'inline-block', marginRight:6}}>
-            <a target="_blank" href={this.props.jsxSource}>A {this.props.name}</a>
+          <h3 style={{display:'inline-block'}}>
+            <a target="_blank" href={jsxSource}>A {name}</a>
           </h3>
           <span style={{color:'grey'}}>adopted from</span>
-          <a target="_blank" href={this.props.originalSource}> original source</a>
+          <a target="_blank" href={originalSource}>original source</a>
         </span>
-        <SyntaxHighlighter language='jsx' style={github}>{cleanSource(this.props.source)}</SyntaxHighlighter>
+        <SyntaxHighlighter language='jsx' style={github}>{cleanSource(source)}</SyntaxHighlighter>
       </div>
     )
   }
