@@ -49,19 +49,14 @@ export default class DropDown extends Component {
   }
 
   render() {
+    console.log('RENDER')
     const { children, label } = this.props;
     return (
       <li className="has-dropdown">
         <a ref={(node) => { this.node = node; }} onClick={this.onClick} style={{textAlign:'end'}}>{label}</a>
-        {(() => {
-          if (this.state.active) {
-            return (
-              <ul>
-                {children}
-              </ul>
-            )
-          }
-        })()}
+        <ul style={{display: this.state.active ? 'inherit' : 'none', position: 'fixed', opacity: 0.9}}>
+          {children}
+        </ul>
       </li>
     )
   }

@@ -31,7 +31,7 @@ export default class Home extends Component {
       <div className="center">
         <h1>Seamless D3 and React</h1>
         <p>
-          Transform your existing D3 charts (or make new ones) and take advantage of React's advanced DOM manipulation and diff capabilitites.  Simply include the VirtualDOM class and pass that off to the D3.select and D3 will emit React nodes instead of document.createElement.
+          Transform your existing D3 charts (or make new ones) and take advantage of React's advanced DOM manipulation and diff capabilitites.  Simply include the VirtualDOM class and pass that off to the D3.select and D3 will emit React nodes instead of using document.createElement.
         </p>
         <hr />
         <div>
