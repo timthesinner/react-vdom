@@ -84,7 +84,7 @@ if (process.argv.indexOf('-prod') !== -1) {
     }),
     new StaticSiteGeneratorPlugin(
       config.output.filename,
-      [ '/', '/static-bar-chart.html', '/dynamic-bar-chart.html', '404.html' ],
+      [ '/', '/static-bar-chart.html', '/dynamic-bar-chart.html', '/epicyclic-gearing.html', '404.html' ],
       {
         title: 'React + D3 with VirtualDOM',
         production: true,
