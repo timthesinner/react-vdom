@@ -43,7 +43,6 @@ var config = {
   entry: {
     main: [ './example/index.jsx' ],
     vendor: [
-      'babel-polyfill',
       'react',
       'react-dom',
       'react-router',
@@ -118,11 +117,6 @@ if (process.argv.indexOf('-prod') !== -1) {
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin(),
     new dashboardPlugin(dash.setData),
-    new webpack.optimize.CommonsChunkPlugin({
-      name: 'vendor',
-      chunks: [ 'main' ],
-      warnings: false,
-    }),
     new bundleTracker({ filename: '../dist/webpack-stats.json' }),
     new htmlWebpackPlugin({ template: index }),
   ];

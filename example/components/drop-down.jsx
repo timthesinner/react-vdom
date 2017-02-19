@@ -49,7 +49,6 @@ export default class DropDown extends Component {
   }
 
   render() {
-    console.log('RENDER')
     const { children, label } = this.props;
     return (
       <li className="has-dropdown">

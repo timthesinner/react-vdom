@@ -19,8 +19,8 @@ import React, { Component } from 'react';
 
 import FormattedSource from '../components/formatted-source';
 
-const SOURCE_CODE = require('source-loader!../letters/static-frequencies');
-import StaticLetterFrequencies from '../letters/static-frequencies';
+const SOURCE_CODE = require('source-loader!../example-components/static-frequencies');
+import StaticLetterFrequencies from '../example-components/static-frequencies';
 
 export default class StaticLetterFrequenciesRoute extends Component {
   render() {
