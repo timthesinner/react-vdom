@@ -19,7 +19,7 @@
 import React, { Component, PropTypes } from 'react';
 import * as d3 from 'd3';
 
-import * as VirtualDOM from '../../src';
+import VirtualDOM from '../../src';
 
 //Adapted from https://bl.ocks.org/mbostock/3885304
 export default class StaticLetterFrequencies extends Component {
@@ -46,7 +46,7 @@ export default class StaticLetterFrequencies extends Component {
     const { letters, width, height } = this.props;
     const { defaultProps, margin } = StaticLetterFrequencies;
 
-    const dom = new VirtualDOM.default('svg', {width:Math.min(+width, defaultProps.width), height:Math.min(+height, defaultProps.height), key: 'letter-frequencies'});
+    const dom = new VirtualDOM('svg', {width:Math.min(+width, defaultProps.width), height:Math.min(+height, defaultProps.height), key: 'letter-frequencies'});
     const svg = d3.select(dom);
 
     const graphWidth = +svg.attr("width") - margin.left - margin.right;

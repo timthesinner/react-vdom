@@ -25,8 +25,10 @@ import NotFound from '../components/not-found';
 import letterData from '../data/letter-frequencies';
 
  //Export all appliance routable components
-import { default as StaticLetterFrequenciesRoute } from './static-frequencies';
-import { default as DynamicLetterFrequenciesRoute } from './dynamic-frequencies';
+import { default as StaticLetterFrequenciesRoute } from '../routable-components/static-frequencies';
+import { default as DynamicLetterFrequenciesRoute } from '../routable-components/dynamic-frequencies';
+import { default as EpicyclicGearing } from '../routable-components/epicyclic-gearing';
+//import { default as QuadTree } from '../example-components/quad-tree';
 import ResizeWrapper from './wrapper';
 
 const BasePath = ((window) => {
@@ -37,12 +39,15 @@ const BasePath = ((window) => {
   return '/' + uri
 })(typeof window === 'undefined' ? {} : window);
 
+//<Route path="quad-tree" name='Quadtree' component={QuadTree}/>
+
 //Export appliance routes
-const Routes = <Route path={BasePath} component={App} build={(route) => { return (BasePath === '/' ? BasePath + route : BasePath + '/' + route); }}>
+const Routes = <Route path={BasePath} component={App} key={Math.random()} build={(route) => { return (BasePath === '/' ? BasePath + route : BasePath + '/' + route); }}>
   <IndexRoute component={Home} />
 
   <Route path="static-bar-chart" name='Static Bar Chart' letters={letterData} component={ResizeWrapper} inject={StaticLetterFrequenciesRoute} />
   <Route path="dynamic-bar-chart" name='Dynamic Bar Chart' letters={letterData} component={ResizeWrapper} inject={DynamicLetterFrequenciesRoute} />
+  <Route path="epicyclic-gearing" name='EpicyclicGearing' component={ResizeWrapper} inject={EpicyclicGearing}/>
 
   <Route path="*" component={NotFound} />
 </Route>;

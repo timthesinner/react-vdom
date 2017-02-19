@@ -44,6 +44,55 @@
       code {
         border-style: none;
       }
+
+      .gearing form {
+        position: absolute;
+        top: 1em;
+        left: 1em;
+      }
+
+      .gearing path {
+        fill-rule: evenodd;
+        stroke: #333;
+        stroke-width: 2px;
+      }
+
+      .gearing .sun path {
+        fill: #6baed6;
+      }
+
+      .gearing .planet path {
+        fill: #9ecae1;
+      }
+
+      .gearing .annulus path {
+        fill: #c6dbef;
+      }
+
+      .quad-tree .point {
+        fill: #000;
+        fill-opacity: 0.4;
+      }
+
+      .quad-tree .point--scanned {
+        fill: orange;
+        fill-opacity: 1;
+        stroke: orange;
+        stroke-width: 3px;
+      }
+
+      .quad-tree .point--selected {
+        fill: red;
+        fill-opacity: 1;
+        stroke: red;
+        stroke-width: 5px;
+      }
+
+      .quad-tree .node {
+        fill: none;
+        stroke: #ccc;
+        shape-rendering: crispEdges;
+      }
     </style>
   </head>
   <body>
