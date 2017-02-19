@@ -44,11 +44,60 @@
       code {
         border-style: none;
       }
+
+      .gearing form {
+        position: absolute;
+        top: 1em;
+        left: 1em;
+      }
+
+      .gearing path {
+        fill-rule: evenodd;
+        stroke: #333;
+        stroke-width: 2px;
+      }
+
+      .gearing .sun path {
+        fill: #6baed6;
+      }
+
+      .gearing .planet path {
+        fill: #9ecae1;
+      }
+
+      .gearing .annulus path {
+        fill: #c6dbef;
+      }
+
+      .quad-tree .point {
+        fill: #000;
+        fill-opacity: 0.4;
+      }
+
+      .quad-tree .point--scanned {
+        fill: orange;
+        fill-opacity: 1;
+        stroke: orange;
+        stroke-width: 3px;
+      }
+
+      .quad-tree .point--selected {
+        fill: red;
+        fill-opacity: 1;
+        stroke: red;
+        stroke-width: 5px;
+      }
+
+      .quad-tree .node {
+        fill: none;
+        stroke: #ccc;
+        shape-rendering: crispEdges;
+      }
     </style>
   </head>
   <body>
     <div id="body">
-      <div class="large-12 columns" data-reactroot="" data-reactid="1" data-react-checksum="-612519276"><div class="contain-to-grid sticky" data-reactid="2"><nav class="top-bar" role="navigation" data-reactid="3"><ul class="title-area" data-reactid="4"><li class="name" data-reactid="5"><h1 data-reactid="6"><a target="_blank" href="https://github.com/timthesinner/react-vdom" data-reactid="7">React VirtualDOM</a></h1></li></ul><section class="top-bar-section" data-reactid="8"><ul class="right" data-reactid="9"><li class="has-dropdown" data-reactid="10"><a style="text-align:end;" data-reactid="11">Example Charts</a><ul style="display:none;position:fixed;opacity:0.9;" data-reactid="12"><li style="float:none;" data-reactid="13"><a href="/static-bar-chart" data-reactid="14">Static Bar Chart</a></li><li style="float:none;" data-reactid="15"><a href="/dynamic-bar-chart" data-reactid="16">Dynamic Bar Chart</a></li></ul></li></ul><ul class="left" data-reactid="17"><li data-reactid="18"><a href="/" data-reactid="19">Home</a></li></ul></section></nav></div><div class="center" data-reactid="20"><p data-reactid="21"><!-- react-text: 22 -->Page not found - the path, <!-- /react-text --><code data-reactid="23">404</code><!-- react-text: 24 -->, does not have an example.<!-- /react-text --><a href="/" data-reactid="25">Head back home</a></p></div></div>
+      <div class="large-12 columns" data-reactroot="" data-reactid="1" data-react-checksum="1143593266"><div class="contain-to-grid sticky" data-reactid="2"><nav class="top-bar" role="navigation" data-reactid="3"><ul class="title-area" data-reactid="4"><li class="name" data-reactid="5"><h1 data-reactid="6"><a target="_blank" href="https://github.com/timthesinner/react-vdom" data-reactid="7">React VirtualDOM</a></h1></li></ul><section class="top-bar-section" data-reactid="8"><ul class="right" data-reactid="9"><li class="has-dropdown" data-reactid="10"><a style="text-align:end;" data-reactid="11">Example Charts</a><ul style="display:none;position:fixed;opacity:0.9;" data-reactid="12"><li style="float:none;" data-reactid="13"><a href="/static-bar-chart" data-reactid="14">Static Bar Chart</a></li><li style="float:none;" data-reactid="15"><a href="/dynamic-bar-chart" data-reactid="16">Dynamic Bar Chart</a></li><li style="float:none;" data-reactid="17"><a href="/epicyclic-gearing" data-reactid="18">EpicyclicGearing</a></li></ul></li></ul><ul class="left" data-reactid="19"><li data-reactid="20"><a href="/" data-reactid="21">Home</a></li></ul></section></nav></div><div class="center" data-reactid="22"><p data-reactid="23"><!-- react-text: 24 -->Page not found - the path, <!-- /react-text --><code data-reactid="25">404</code><!-- react-text: 26 -->, does not have an example.<!-- /react-text --><a href="/" data-reactid="27">Head back home</a></p></div></div>
     </div>
 
     <!-- Inject the app bundle accounting for nested routes -->
